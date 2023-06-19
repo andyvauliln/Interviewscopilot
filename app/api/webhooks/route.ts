@@ -1,11 +1,11 @@
-import Stripe from 'stripe';
 import { stripe } from '@/utils/stripe';
 import {
-  upsertProductRecord,
+  manageSubscriptionStatusChange,
   upsertPriceRecord,
-  manageSubscriptionStatusChange
+  upsertProductRecord
 } from '@/utils/supabase-admin';
 import { headers } from 'next/headers';
+import Stripe from 'stripe';
 
 const relevantEvents = new Set([
   'product.created',
@@ -32,6 +32,7 @@ export async function POST(req: Request) {
     console.log(`❌ Error message: ${err.message}`);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
+  console.log(body, event, sig, webhookSecret, 'webhook events');
 
   if (relevantEvents.has(event.type)) {
     try {

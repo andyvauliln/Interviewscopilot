@@ -1,8 +1,8 @@
-import { toDateTime } from './helpers';
-import { stripe } from './stripe';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 import type { Database } from 'types_db';
+import { toDateTime } from './helpers';
+import { stripe } from './stripe';
 
 type Product = Database['public']['Tables']['products']['Row'];
 type Price = Database['public']['Tables']['prices']['Row'];
@@ -111,6 +111,13 @@ const manageSubscriptionStatusChange = async (
   createAction = false
 ) => {
   // Get customer's UUID from mapping table.
+  console.log(
+    subscriptionId,
+    customerId,
+    createAction,
+    'manageSubscriptionStatusChange'
+  );
+
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
     .from('customers')
     .select('id')
@@ -123,6 +130,7 @@ const manageSubscriptionStatusChange = async (
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ['default_payment_method']
   });
+  console.log(subscription, 'subscription');
   // Upsert the latest status of the subscription object.
   const subscriptionData: Database['public']['Tables']['subscriptions']['Insert'] =
     {
@@ -178,8 +186,8 @@ const manageSubscriptionStatusChange = async (
 };
 
 export {
-  upsertProductRecord,
-  upsertPriceRecord,
   createOrRetrieveCustomer,
-  manageSubscriptionStatusChange
+  manageSubscriptionStatusChange,
+  upsertPriceRecord,
+  upsertProductRecord
 };
