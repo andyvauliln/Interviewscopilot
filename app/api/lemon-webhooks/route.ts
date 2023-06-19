@@ -66,7 +66,7 @@ export async function POST(req: Request) {
               id: body.attributes.store_id
             })) as RetrieveStoreResult;
             console.log(store, 'store');
-            console.log(JSON.stringify(store.relationships), 'store');
+            console.log(JSON.stringify(store), 'store');
             //await manageSubscriptionStatusChangeLemon(store);
             break;
           case 'subscription_payment_success':
