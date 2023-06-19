@@ -44,6 +44,8 @@ export default function Pricing({
       )
     )
   );
+  console.log(session, user, products, subscription);
+
   const router = useRouter();
   const [billingInterval, setBillingInterval] =
     useState<BillingInterval>('month');
