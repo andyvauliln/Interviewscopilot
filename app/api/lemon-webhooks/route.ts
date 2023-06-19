@@ -1,6 +1,6 @@
 import { client } from '@/utils/lemon-client';
 import {
-  manageSubscriptionStatusChange,
+  manageSubscriptionStatusChangeLemon,
   upsertPriceRecord,
   upsertProductRecord
 } from '@/utils/supabase-admin';
@@ -41,8 +41,6 @@ const relevantEvents = new Set([
 ]);
 
 export async function POST(req: Request) {
-  //console.log(req, 'req');
-
   const body = await req.json();
   const sig = headers().get('X-Signature') as string;
   const webhookSecret = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET;
@@ -52,21 +50,11 @@ export async function POST(req: Request) {
   console.log(event, 'event');
 
   if (sig && webhookSecret && sig === webhookSecret) {
-    //console.log('we here', 'data');
-
     if (relevantEvents.has(event)) {
       console.log(relevantEvents.has(event), 'has relemvant');
 
       try {
         switch (event) {
-          // case 'product.created':
-          // case 'product.updated':
-          //   await upsertProductRecord(event.data.object as Stripe.Product);
-          //   break;
-          // case 'price.created':
-          // case 'price.updated':
-          //   await upsertPriceRecord(event.data.object as Stripe.Price);
-          //   break;
           case 'subscription_created':
           case 'subscription_updated':
           case 'subscription_expired':
@@ -79,19 +67,7 @@ export async function POST(req: Request) {
             })) as RetrieveStoreResult;
             console.log(store, 'store');
             console.log(JSON.stringify(store.relationships), 'store');
-            await manageSubscriptionStatusChangeLemon(store);
-            // console.log(store.relationships.products, 'products');
-            // console.log(store.relationships.orders, 'orders');
-            // console.log(store.relationships.subscriptions, 'subscriptions');
-            // console.log(store.relationships.webhooks, 'webhooks');
-            // console.log(JSON.stringify(store.relationships), 'store');
-
-            // client.retrieveStore()
-            // await manageSubscriptionStatusChange(
-            //   subscription.id,
-            //   subscription.customer as string,
-            //   event.type === 'customer.subscription.created'
-            // );
+            //await manageSubscriptionStatusChangeLemon(store);
             break;
           case 'subscription_payment_success':
           case 'subscription_payment_failed':
