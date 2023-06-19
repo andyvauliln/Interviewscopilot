@@ -6,6 +6,8 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
+  console.log(req, 'request');
+
   if (req.method === 'POST') {
     try {
       const supabase = createRouteHandlerClient<Database>({ cookies });
@@ -18,13 +20,15 @@ export async function POST(req: Request) {
         uuid: user.id || '',
         email: user.email || ''
       });
+      console.log(user, return_url, 'create-portal-link');
 
       if (!customer) throw Error('Could not get customer');
       const { url } = await stripe.billingPortal.sessions.create({
         customer,
         return_url: `${getURL()}/account`
       });
-      console.log(user, customer, 'create-portal-link');
+
+      console.log(customer, return_url, 'create-portal-link');
 
       return new Response(JSON.stringify({ url }), {
         status: 200
