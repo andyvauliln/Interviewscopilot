@@ -1,8 +1,7 @@
-import ManageSubscriptionButton from './ManageSubscriptionButton';
 import {
   getSession,
-  getUserDetails,
-  getSubscription
+  getSubscription,
+  getUserDetails
 } from '@/app/supabase-server';
 import Button from '@/components/ui/Button';
 import { Database } from '@/types_db';
@@ -12,6 +11,7 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
+import ManageSubscriptionButton from './ManageSubscriptionButton';
 
 export default async function Account() {
   const [session, userDetails, subscription] = await Promise.all([
@@ -103,7 +103,7 @@ export default async function Account() {
                 variant="slim"
                 type="submit"
                 form="nameForm"
-                disabled={true}
+                disabled={false}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
                 Update Name
@@ -136,7 +136,7 @@ export default async function Account() {
                 variant="slim"
                 type="submit"
                 form="emailForm"
-                disabled={true}
+                disabled={false}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
                 Update Email
