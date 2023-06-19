@@ -5,12 +5,12 @@ import 'styles/main.css';
 import SupabaseProvider from './supabase-provider';
 
 const meta = {
-  title: 'Next.js Subscription Starter',
-  description: 'Brought to you by Vercel, Stripe, and Supabase.',
+  title: 'Interviews Copilot',
+  description: 'Helps prepare to interview, find job and provide ai answeres to interview questions in realtime call',
   cardImage: '/og.png',
   robots: 'follow, index',
   favicon: '/favicon.ico',
-  url: 'https://subscription-starter.vercel.app',
+  url: 'https://interviewscopilot-andyvauliln.vercel.app',
   type: 'website'
 };
 
@@ -32,7 +32,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@vercel',
+    site: '@interviews_copilot',
     title: meta.title,
     description: meta.description,
     cardImage: meta.cardImage
