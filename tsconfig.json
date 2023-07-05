@@ -1,13 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "checkJs": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -19,9 +16,8 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "react": ["./node_modules/@types/react"],
+      "@/*": ["./*"]
     },
     "incremental": true,
     "plugins": [
@@ -34,9 +30,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "hooks/use-action-state.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
