@@ -194,3 +194,27 @@ npm run dev
 yarn
 yarn dev
 ```
+
+### languages to include 
+English
+Spanish
+French
+German
+Italian
+Dutch
+Russian
+Chinese
+Japanese
+Korean
+Portuguese
+Indonesian
+Turkish
+Thai
+Vietnamese
+
+
+ "functions": {
+        "api/**/*.[jt]s": {
+            "runtime": "vercel-deno@3.0.2"
+        }
+    }
