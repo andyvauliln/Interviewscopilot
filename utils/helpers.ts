@@ -1,8 +1,10 @@
 import { Database } from '@/types_db';
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 type Price = Database['public']['Tables']['prices']['Row'];
 
-export const getURL = () => {
+export const getURL = (path = '', from = 'test') => {
   let url =
     process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
     process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel.
@@ -10,7 +12,10 @@ export const getURL = () => {
   // Make sure to include `https://` when not localhost.
   url = url.includes('http') ? url : `https://${url}`;
   // Make sure to including trailing `/`.
+  console.log(from, 'from');
+
   url = url.charAt(url.length - 1) === '/' ? url : `${url}/`;
+  url = path ? `${url}${path}` : url;
   return url;
 };
 
@@ -21,7 +26,8 @@ export const postData = async ({
   url: string;
   data?: { price: Price };
 }) => {
-  console.log('posting,', url, data);
+  console.log(url, 'data');
+  console.log(data, 'data');
 
   const res = await fetch(url, {
     method: 'POST',
@@ -44,3 +50,8 @@ export const toDateTime = (secs: number) => {
   t.setSeconds(secs);
   return t;
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+

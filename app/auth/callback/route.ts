@@ -2,12 +2,15 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-import type { NextRequest } from 'next/server'
-import type { Database } from '@/types_db'
+import type { Database } from '@/types_db';
+import type { NextRequest } from 'next/server';
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
+
+  console.log('AUTH CALLBACK', 'data');
+  
 
   if (code) {
     const supabase = createRouteHandlerClient<Database>({ cookies })

@@ -111,12 +111,12 @@ const manageSubscriptionStatusChange = async (
   createAction = false
 ) => {
   // Get customer's UUID from mapping table.
-  console.log(
-    subscriptionId,
-    customerId,
-    createAction,
-    'manageSubscriptionStatusChange'
-  );
+    console.log(
+      subscriptionId,
+      customerId,
+      createAction,
+      'manageSubscriptionStatusChange'
+    );
 
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
     .from('customers')

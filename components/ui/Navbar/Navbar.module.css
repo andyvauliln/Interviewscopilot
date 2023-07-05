@@ -10,10 +10,11 @@
   @apply text-zinc-100;
 }
 
-.link:focus {
+/* .link:focus {
   @apply outline-none text-zinc-100 ring-2 ring-pink-500 ring-opacity-50;
 }
 
+*/
 .logo {
   @apply cursor-pointer rounded-full transform duration-100 ease-in-out;
 }

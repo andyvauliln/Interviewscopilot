@@ -8,8 +8,14 @@
   box-sizing: inherit;
 }
 
-*:focus {
-  @apply outline-none ring-2 ring-pink-500 ring-opacity-50;
+*:focus,
+input,
+textarea {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-color: none !important;
+  /* @apply outline-none ring-2 ring-pink-500 ring-opacity-50; */
 }
 
 html {
@@ -49,4 +55,12 @@ a {
 
 .height-screen-helper {
   height: calc(100vh - 80px);
+}
+
+@font-face {
+  font-family: "inconsolata";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/Simplifica.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
 }
